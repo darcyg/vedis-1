@@ -44,6 +44,8 @@ int main(int argc,char *argv[])
     }
     //printf("%s\n", buffer);
 
+    printf("%s\n", db);
+
     vedis *pStore;            /* Vedis handle */
     vedis_value *pResult;     /* Return value of the last executed command */
     int rc;
