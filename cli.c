@@ -1,9 +1,9 @@
 /* 
-
 vedis cli
-gcc -W -Wall -O2 cli.c vedis.c -o cli
 
+gcc -W -Wall -O2 cli.c vedis.c -o cli
 taka@bandrich.com 20140414
+
 */
 
 #include <stdio.h>
@@ -13,15 +13,15 @@ taka@bandrich.com 20140414
 
 #ifdef OPENWRT
     #ifdef VOLATILE
-        #define db "/tmp/vol.db"
+        #define db "/tmp/db.br"
     #else
-        #define db "/tmp/no-vol.db"
+        #define db "/etc/config/db.br"
     #endif
 #else //arm
     #ifdef VOLATILE
-        #define db "/dev/shm/vol.db"
+        #define db "/dev/shm/db.br"
     #else
-        #define db "/etc/no-vol.db"
+        #define db "/etc/db.br"
     #endif
 #endif
 
@@ -43,8 +43,7 @@ int main(int argc,char *argv[])
         offset += written;
     }
     //printf("%s\n", buffer);
-
-    printf("%s\n", db);
+    //printf("%s\n", db);
 
     vedis *pStore;            /* Vedis handle */
     vedis_value *pResult;     /* Return value of the last executed command */
@@ -57,7 +56,6 @@ int main(int argc,char *argv[])
     }
     
     vedis_exec(pStore,buffer,-1);
-    /* Extract the return value of the last executed command (i.e. GET test) " */
     rc = vedis_exec_result(pStore,&pResult);
     if ( rc != VEDIS_OK )
     {
@@ -67,7 +65,6 @@ int main(int argc,char *argv[])
     else
     {
         const char *zResponse;
-        /* Cast the vedis object to a string */
         zResponse = vedis_value_to_string(pResult,0);
         if (strlen(zResponse) == 0)
         {
@@ -77,7 +74,6 @@ int main(int argc,char *argv[])
         {
             printf("%s\n", zResponse); 
         }
-
     }
     vedis_close(pStore);
     return 0;
