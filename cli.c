@@ -69,13 +69,20 @@ int main(int argc,char *argv[])
             /* Iterate over the elements of the returned array */
             vedis_value *pEntry;
             //puts("Array entries:");
-            while((pEntry = vedis_array_next_elem(pResult)) != 0 )
+            while ((pEntry = vedis_array_next_elem(pResult)) != 0 )
             {
                 const char *zEntry;
                 /* Cast to string and output */
                 zEntry = vedis_value_to_string(pEntry, 0);
-                /* Output */
-                printf("%s\n", zEntry);
+                
+                if (strlen(zEntry) == 0)
+                {
+                    printf("null\n");
+                }
+                else
+                {
+                    printf("%s\n", zEntry);
+                }
             }
         } 
         else
