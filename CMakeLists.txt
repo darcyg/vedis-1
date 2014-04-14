@@ -1,8 +1,7 @@
 # ==============================================================
 # vedis cmake v.0.0.1
 #
-# Created by Chia-Ming Wang (taka@bandrich.com) on 2014/04/14
-# Copyright 2014 Bandrich Inc. All rights reserved.
+# Created by Taka Wang (taka@cmwang.net) on 2014/04/14
 #
 # gcc -W -Wall -O2 cli.c vedis.c -o cli
 #

@@ -2,7 +2,7 @@
 vedis cli
 
 gcc -W -Wall -O2 cli.c vedis.c -o cli
-taka@bandrich.com 20140414
+taka@cmwang.net 20140414
 
 */
 
