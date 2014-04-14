@@ -64,15 +64,32 @@ int main(int argc,char *argv[])
     }
     else
     {
-        const char *zResponse;
-        zResponse = vedis_value_to_string(pResult,0);
-        if (strlen(zResponse) == 0)
+        if ( vedis_value_is_array(pResult) )
         {
-            printf("null\n");
+            /* Iterate over the elements of the returned array */
+            vedis_value *pEntry;
+            //puts("Array entries:");
+            while((pEntry = vedis_array_next_elem(pResult)) != 0 )
+            {
+                const char *zEntry;
+                /* Cast to string and output */
+                zEntry = vedis_value_to_string(pEntry, 0);
+                /* Output */
+                printf("%s\n", zEntry);
+            }
         } 
         else
         {
-            printf("%s\n", zResponse); 
+            const char *zResponse;
+            zResponse = vedis_value_to_string(pResult,0);
+            if (strlen(zResponse) == 0)
+            {
+                printf("null\n");
+            } 
+            else
+            {
+                printf("%s\n", zResponse); 
+            }
         }
     }
     vedis_close(pStore);
