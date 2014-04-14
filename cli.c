@@ -42,11 +42,8 @@ int main(int argc,char *argv[])
         }
         offset += written;
     }
-    //printf("%s\n", buffer);
-    //printf("%s\n", db);
-
-    vedis *pStore;            /* Vedis handle */
-    vedis_value *pResult;     /* Return value of the last executed command */
+    vedis *pStore;
+    vedis_value *pResult;
     int rc;
     rc = vedis_open(&pStore, db);
     if ( rc != VEDIS_OK )
@@ -66,15 +63,11 @@ int main(int argc,char *argv[])
     {
         if ( vedis_value_is_array(pResult) )
         {
-            /* Iterate over the elements of the returned array */
             vedis_value *pEntry;
-            //puts("Array entries:");
             while ((pEntry = vedis_array_next_elem(pResult)) != 0 )
             {
                 const char *zEntry;
-                /* Cast to string and output */
                 zEntry = vedis_value_to_string(pEntry, 0);
-                
                 if (strlen(zEntry) == 0)
                 {
                     printf("null\n");

@@ -1,5 +1,5 @@
 # ==============================================================
-# vedis cmake v.0.0.1
+# vedis cmake v.0.0.2
 #
 # Created by Taka Wang (taka@cmwang.net) on 2014/04/14
 #
