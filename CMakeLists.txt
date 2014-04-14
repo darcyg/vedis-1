@@ -1,5 +1,5 @@
 # ==============================================================
-# vedis cmake v.0.0.2
+# vedis cmake v.0.0.3
 #
 # Created by Taka Wang (taka@cmwang.net) on 2014/04/14
 #
@@ -15,7 +15,7 @@ if (OPENWRT)
     add_definitions(-DOPENWRT)
 endif()
 
-project(redis C)
+project(vedis C)
 set(CMAKE_C_FLAGS "-Wall -g -O2")
 
 # NON-VOLATILE CLI
