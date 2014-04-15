@@ -21,7 +21,7 @@ taka@cmwang.net 20140414
     #ifdef VOLATILE
         #define db "/dev/shm/db.br"
     #else
-        #define db "/etc/db.br"
+        #define db "/usr2/db.br"
     #endif
 #endif
 
