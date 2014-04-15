@@ -10,7 +10,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # cmake . -DOPENWRT=ON
-option(OPENWRT "OPENWRT" OFF)
+option(OPENWRT "OPENWRT" ON)
 if (OPENWRT)
     add_definitions(-DOPENWRT)
 endif()
