@@ -15,16 +15,22 @@ if (OPENWRT)
     add_definitions(-DOPENWRT)
 endif()
 
-project(vedis C)
-set(CMAKE_C_FLAGS "-Wall -g -O2")
+PROJECT(vedis C)
+SET(CMAKE_C_FLAGS "-Wall -g -O2")
+
+SET(vedis_lib vedis.c)
+ADD_LIBRARY(vedis SHARED ${vedis_lib})
+INSTALL(TARGETS vedis LIBRARY DESTINATION /usr/lib/)
 
 # NON-VOLATILE CLI
-set(NV-CLI vli)
-add_executable(${NV-CLI} cli.c vedis.c)
+SET(NV-CLI vli)
+ADD_EXECUTABLE(${NV-CLI} cli.c)
+TARGET_LINK_LIBRARIES(${NV-CLI} vedis)
 INSTALL(TARGETS ${NV-CLI} RUNTIME DESTINATION /usr/bin/)
 
 # VOLATILE CLI
-set(V-CLI vvli)
-add_executable(${V-CLI} cli.c vedis.c)
-set_target_properties (${V-CLI} PROPERTIES COMPILE_DEFINITIONS "VOLATILE")
-INSTALL(TARGETS ${V-CLI} RUNTIME DESTINATION /usr/bin/)
+SET(V-CLI vvli)
+ADD_EXECUTABLE(${V-CLI} cli.c)
+TARGET_LINK_LIBRARIES(${V-CLI} vedis)
+SET_TARGET_PROPERTIES(${V-CLI} PROPERTIES COMPILE_DEFINITIONS "VOLATILE")
+INSTALL(TARGETS ${V-CLI} RUNTIME  DESTINATION /usr/bin/)
